@@ -26,6 +26,13 @@ public class MainAplication {
 
         String tipoCombustivel = JOptionPane.showInputDialog("Qual tipo do combustivel?");
 
+
+        JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
+
+        String resposta = JOptionPane.showInputDialog("PIX,CARTAO OU DINHEIRO");
+
+        pagar.opcoesDeP(resposta);
+
         // calculando a valor da goslina e etanol.
         if (tipoCombustivel.equalsIgnoreCase("Gasolina")) {
             double resultadoGasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
@@ -40,12 +47,6 @@ public class MainAplication {
 
         }
 
-
-        JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
-
-        String resposta = JOptionPane.showInputDialog("PIX,CARTAO OU DINHEIRO");
-
-        pagar.opcoesDeP(resposta);
 
         String valorStringpraconverter = JOptionPane.showInputDialog("Digite o valor a ser pago!");
 
