@@ -2,10 +2,9 @@ package br.com.estudos.app;
 
 import br.com.estudos.app.model.CombustivelModel;
 import br.com.estudos.app.service.AbastecimentoService;
-import br.com.estudos.app.service.PagamanetoService;
+import br.com.estudos.app.service.PagamentoService;
 
 import javax.swing.JOptionPane;
-import java.util.Scanner;
 
 public class MainAplication {
 
@@ -13,7 +12,7 @@ public class MainAplication {
 
         AbastecimentoService carro1 = new AbastecimentoService();
 
-        PagamanetoService pagar = new PagamanetoService();
+        PagamentoService pagar = new PagamentoService();
 
         CombustivelModel regrasDoPostoGasolina = new CombustivelModel(5.0, "Comum");
 
@@ -25,9 +24,18 @@ public class MainAplication {
 
         String tipoCombustivel = JOptionPane.showInputDialog("Qual tipo do combustivel?");
 
-        double resultado = carro1.calcularValor(gas,regrasDoPostoGasolina);
+        double resultadogasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
+        double resultadoetanol = carro1.calcularValor(gas,regrasDoPostoEtanol);
 
-        JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultado + " Reais! ");
+        if (tipoCombustivel.equalsIgnoreCase("Gasolina")) {
+            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadogasolina + " Reais! ");
+        } else if (tipoCombustivel.equalsIgnoreCase("Etanol")) {
+            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadoetanol + " Reais! ");
+        } else {
+            JOptionPane.showMessageDialog(null, "Não temos esse tipo de combustivel, desculpe!");
+
+        }
+
 
         JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
 
@@ -35,7 +43,7 @@ public class MainAplication {
 
         pagar.opcoesDeP(resposta);
 
-        String valorStringpraconverter = JOptionPane.showInputDialog("Digite o valor");
+        String valorStringpraconverter = JOptionPane.showInputDialog("Digite o valor a ser pago!");
 
         double valor = Double.parseDouble(valorStringpraconverter);
 

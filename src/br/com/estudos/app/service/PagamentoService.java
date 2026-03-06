@@ -2,7 +2,7 @@ package br.com.estudos.app.service;
 
 import javax.swing.*;
 
-public class PagamanetoService {
+public class PagamentoService {
 
     private double valor;
     private String op;
@@ -13,9 +13,8 @@ public class PagamanetoService {
 
         this.valor = valor;
 
-        if (valor < valortotal.getTotal()) {
-            JOptionPane.showMessageDialog(null, "Valor insuficiente");
-        } else if (op.equalsIgnoreCase("PIX")) {
+
+        if (op.equalsIgnoreCase("PIX")) {
             valor *= 0.90;
             JOptionPane.showMessageDialog(null, "Desconto de 10% aplicado no pix!");
         } else if (op.equalsIgnoreCase("DINHEIRO")) {
