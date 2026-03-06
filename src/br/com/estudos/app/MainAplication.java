@@ -21,16 +21,20 @@ public class MainAplication {
         String pergunta = JOptionPane.showInputDialog("Digite a quantidade de combustivel em litros");
 
         double gas = Double.parseDouble(pergunta);
+        
+        double totalVenda = 0;
 
         String tipoCombustivel = JOptionPane.showInputDialog("Qual tipo do combustivel?");
 
-        double resultadogasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
-        double resultadoetanol = carro1.calcularValor(gas,regrasDoPostoEtanol);
-
+        // calculando a valor da goslina e etanol.
         if (tipoCombustivel.equalsIgnoreCase("Gasolina")) {
-            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadogasolina + " Reais! ");
+            double resultadoGasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
+            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadoGasolina + " Reais! ");
+            totalVenda = resultadoGasolina;
         } else if (tipoCombustivel.equalsIgnoreCase("Etanol")) {
-            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadoetanol + " Reais! ");
+            double resultadoEtanol = carro1.calcularValor(gas,regrasDoPostoEtanol);
+            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadoEtanol + " Reais! ");
+            totalVenda = resultadoEtanol;
         } else {
             JOptionPane.showMessageDialog(null, "Não temos esse tipo de combustivel, desculpe!");
 
@@ -47,9 +51,15 @@ public class MainAplication {
 
         double valor = Double.parseDouble(valorStringpraconverter);
 
-        pagar.pagar(valor);
+        // Nao deixa pagar menos ou mais que o preço.
 
-
+        if (totalVenda > valor) {
+            JOptionPane.showMessageDialog(null, "Valor insuficiente!");
+        } else if (totalVenda < valor) {
+            JOptionPane.showMessageDialog(null, "O valor esta acima do esperado");
+        }  else {
+            pagar.pagar(valor);
+        }
 
 
     }

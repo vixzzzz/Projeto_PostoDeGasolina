@@ -7,7 +7,7 @@ public class PagamentoService {
     private double valor;
     private String op;
 
-    public void pagar(double valor) {
+    public double pagar(double valor) {
 
         AbastecimentoService valortotal = new AbastecimentoService();
 
@@ -25,10 +25,11 @@ public class PagamentoService {
         } else {
             JOptionPane.showMessageDialog(null, "Metodo invalido!");
         }
+        return valor;
     }
 
-        public void opcoesDeP (String op) {
-            this.op = op;
-        }
+    public void opcoesDeP(String op) {
+        this.op = op;
     }
+}
 
