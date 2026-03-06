@@ -59,6 +59,7 @@ public class MainAplication {
             JOptionPane.showMessageDialog(null, "O valor esta acima do esperado");
         }  else {
             pagar.pagar(valor);
+
         }
 
 
