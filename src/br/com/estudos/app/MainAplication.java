@@ -26,21 +26,12 @@ public class MainAplication {
 
         String tipoCombustivel = JOptionPane.showInputDialog("Qual tipo do combustivel?");
 
-
-        JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
-
-        String resposta = JOptionPane.showInputDialog("PIX,CARTAO OU DINHEIRO");
-
-        pagar.opcoesDeP(resposta);
-
         // calculando a valor da goslina e etanol.
         if (tipoCombustivel.equalsIgnoreCase("Gasolina")) {
             double resultadoGasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
-            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadoGasolina + " Reais! ");
             totalVenda = resultadoGasolina;
         } else if (tipoCombustivel.equalsIgnoreCase("Etanol")) {
             double resultadoEtanol = carro1.calcularValor(gas,regrasDoPostoEtanol);
-            JOptionPane.showMessageDialog(null, "O Valor foi de : "  + resultadoEtanol + " Reais! ");
             totalVenda = resultadoEtanol;
         } else {
             JOptionPane.showMessageDialog(null, "Não temos esse tipo de combustivel, desculpe!");
@@ -48,20 +39,29 @@ public class MainAplication {
         }
 
 
-        String valorStringpraconverter = JOptionPane.showInputDialog("Digite o valor a ser pago!");
+        JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
 
-        double valor = Double.parseDouble(valorStringpraconverter);
+        String resposta = JOptionPane.showInputDialog("PIX,CARTAO OU DINHEIRO");
 
+        pagar.opcoesDeP(resposta);
+
+        // atualiza o valor com desconto
+        totalVenda = pagar.mostrarValor(totalVenda);
+
+
+        String valorPraconverter = JOptionPane.showInputDialog("Digite o valor a ser pago!");
+
+        double valor = Double.parseDouble(valorPraconverter);
         // Nao deixa pagar menos ou mais que o preço.
 
         if (totalVenda > valor) {
             JOptionPane.showMessageDialog(null, "Valor insuficiente!");
         } else if (totalVenda < valor) {
             JOptionPane.showMessageDialog(null, "O valor esta acima do esperado");
-        }  else {
-            pagar.pagar(valor);
-
+        } else {
+            JOptionPane.showMessageDialog(null,"Combustivel Pago, volte sempre!");
         }
+
 
 
     }
