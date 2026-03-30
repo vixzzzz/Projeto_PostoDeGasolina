@@ -18,7 +18,20 @@ public class MainAplication {
 
         CombustivelModel regrasDoPostoEtanol = new CombustivelModel(6.0, "Etanol");
 
+        while (true) {
+
         String pergunta = JOptionPane.showInputDialog("Digite a quantidade de combustivel em litros");
+
+
+        if (pergunta == null) {
+            JOptionPane.showMessageDialog(null, "Ate Logo!");
+            break;
+        }
+
+        if (pergunta.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Quantidade de combustivel é obrigatória!");
+            continue; // Volta para o início do loop para solicitar novamente
+        }
 
         double gas = Double.parseDouble(pergunta);
         
@@ -26,6 +39,15 @@ public class MainAplication {
 
         String tipoCombustivel = JOptionPane.showInputDialog("Qual tipo do combustivel?");
 
+        if (tipoCombustivel == null) {
+            JOptionPane.showMessageDialog(null, "Ate Logo!");
+            break;
+        }
+
+        if (tipoCombustivel.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tipo de combustivel é obrigatório!");
+            continue; // Volta para o início do loop para solicitar novamente
+        }
         // calculando a valor da goslina e etanol.
         if (tipoCombustivel.equalsIgnoreCase("Gasolina")) {
             double resultadoGasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
@@ -41,7 +63,20 @@ public class MainAplication {
 
         JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
 
+
         String resposta = JOptionPane.showInputDialog("PIX,CARTAO OU DINHEIRO");
+
+        if (resposta == null) {
+            JOptionPane.showMessageDialog(null, "Ate Logo!");
+            break;
+        }
+
+        if(resposta.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Meio de pagamento é obrigatório!");
+            continue; // Volta para o início do loop para solicitar novamente
+        }
+
+      
 
         pagar.opcoesDeP(resposta);
 
@@ -50,6 +85,16 @@ public class MainAplication {
 
 
         String valorPraconverter = JOptionPane.showInputDialog("Digite o valor a ser pago!");
+
+        if (valorPraconverter == null) {
+            JOptionPane.showMessageDialog(null, "Ate Logo!");
+            break;
+        }
+
+        if (valorPraconverter.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Valor a ser pago é obrigatório!");
+            continue; // Volta para o início do loop para solicitar novamente
+        }
 
         double valor = Double.parseDouble(valorPraconverter);
         // Nao deixa pagar menos ou mais que o preço.
@@ -62,7 +107,7 @@ public class MainAplication {
             JOptionPane.showMessageDialog(null,"Combustivel Pago, volte sempre!");
         }
 
-
+    }
 
     }
 }
