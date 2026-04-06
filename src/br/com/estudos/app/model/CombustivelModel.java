@@ -4,10 +4,12 @@ public class CombustivelModel {
 
     private String tipo;
     private double precoPorLitro;
+    private int qtdCombustivel;
 
-    public CombustivelModel(double precoPorLitro, String tipo) {
+    public CombustivelModel(double precoPorLitro, String tipo, int qtdCombustivel) {
         this.precoPorLitro = precoPorLitro;
         this.tipo = tipo;
+        this.qtdCombustivel = qtdCombustivel;
     }
 
     public String getTipo() {
@@ -25,4 +27,13 @@ public class CombustivelModel {
     public void setPrecoPorLitro(double precoPorLitro) {
         this.precoPorLitro = precoPorLitro;
     }
+
+    public int getQtdCombustivel() {
+        return qtdCombustivel;
+    }
+
+    public void setQtdCombustivel(int qtdCombustivel) {
+        this.qtdCombustivel = qtdCombustivel;
+    }
+
 }

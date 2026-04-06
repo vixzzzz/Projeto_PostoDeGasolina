@@ -14,9 +14,9 @@ public class MainAplication {
 
         PagamentoService pagar = new PagamentoService();
 
-        CombustivelModel regrasDoPostoGasolina = new CombustivelModel(5.0, "Comum");
+        CombustivelModel regrasDoPostoGasolina = new CombustivelModel(5.0, "Comum", 300);
 
-        CombustivelModel regrasDoPostoEtanol = new CombustivelModel(6.0, "Etanol");
+        CombustivelModel regrasDoPostoEtanol = new CombustivelModel(6.0, "Etanol", 300);
 
         while (true) {
 
@@ -52,14 +52,20 @@ public class MainAplication {
         if (tipoCombustivel.equalsIgnoreCase("Gasolina")) {
             double resultadoGasolina = carro1.calcularValor(gas,regrasDoPostoGasolina);
             totalVenda = resultadoGasolina;
+            if (!carro1.verificarCombustivel(gas, regrasDoPostoGasolina)) {
+                continue;
+            }
         } else if (tipoCombustivel.equalsIgnoreCase("Etanol")) {
             double resultadoEtanol = carro1.calcularValor(gas,regrasDoPostoEtanol);
             totalVenda = resultadoEtanol;
+            if (!carro1.verificarCombustivel(gas, regrasDoPostoEtanol)) {
+                continue;
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Não temos esse tipo de combustivel, desculpe!");
-
+            continue;
         }
-
+        
 
         JOptionPane.showMessageDialog(null, "Digite o meio de pagamento");
 
@@ -101,9 +107,20 @@ public class MainAplication {
 
         if (totalVenda > valor) {
             JOptionPane.showMessageDialog(null, "Valor insuficiente!");
-        } else if (totalVenda < valor) {
-            JOptionPane.showMessageDialog(null, "O valor esta acima do esperado");
+
         } else {
+            
+            if (totalVenda < valor) {
+            double troco = valor - totalVenda;
+            JOptionPane.showMessageDialog(null, "Seu troco é de " + troco + " reais, Volte sempre!") ;
+        } 
+    }
+        if (tipoCombustivel.equalsIgnoreCase("Gasolina")) { 
+            carro1.subtrairCombustivel(gas, regrasDoPostoGasolina);
+            JOptionPane.showMessageDialog(null,"Combustivel Pago, volte sempre!");
+        }
+         else if (tipoCombustivel.equalsIgnoreCase("Etanol")) {
+            carro1.subtrairCombustivel(gas, regrasDoPostoEtanol);
             JOptionPane.showMessageDialog(null,"Combustivel Pago, volte sempre!");
         }
 
